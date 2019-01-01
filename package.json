@@ -1,0 +1,26 @@
+{
+  "name": "jest-demo",
+  "version": "1.0.0",
+  "description": "a simple demo to learn jest",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xiao11lang/Jest-Demo.git"
+  },
+  "keywords": [
+    "jest",
+    "unit-test"
+  ],
+  "author": "xiao11lang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xiao11lang/Jest-Demo/issues"
+  },
+  "homepage": "https://github.com/xiao11lang/Jest-Demo#readme",
+  "devDependencies": {
+    "jest": "^23.6.0"
+  }
+}
