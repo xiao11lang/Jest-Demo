@@ -20,3 +20,46 @@ js中为falsy的值共6个：0，null，undefined，false，''，NaN
 
 #### 数字
 
+除了使用toBe或toEqual对数字进行比较之外，还可以使用以下匹配器比较数字
+
+- toBeGreaterThan
+- toBeGreaterThanOrEqual
+- toBeLessThan
+- toBeLessThanOrEqual
+
+以上匹配器使用十分方便，从命名就能看出用途。需要注意的是，比较两个浮点数是否相等，需要用toBeCloseTo 匹配器，这是js对浮点数的处理方式造成的，在js中 0.1+0.2==0.3，这个表达式的结果将是false
+
+#### 字符串
+
+toMatch匹配器可以检查某个字符串是否匹配给定的正则表达式
+
+#### 数组
+
+toContain匹配器用来验证某个数组是否包含特定元素
+
+注意，对于数组元素若为数组或对象，仅当引用相同时，测试才能通过
+
+#### 自定义匹配器
+
+```javascript
+expect.extend({
+    toBeWithinRange(received, floor, ceiling) {
+      const pass = received >= floor && received <= ceiling;
+      if (pass) {
+        return {
+          message: () =>
+            `expected ${received} not to be within range ${floor} - ${ceiling}`,
+          pass: true,
+        };
+      } else {
+        return {
+          message: () =>
+            `expected ${received} to be within range ${floor} - ${ceiling}`,
+          pass: false,
+        };
+      }
+    },
+  });
+```
+
+上述代码中，使用expect.extend()方法自定义了一个匹配器。extend方法接收一个对象作为参数，对象的键即为自定义匹配器的名称，值为一个函数。函数的第一个参数为使用匹配器时传递给expect的参数，之后的参数为匹配器自身的参数。函数需要返回一个对象，对象具有message（string）和pass（boolean）字段，用于给出在测试通过或失败的提示信息以及是否通过测试。
