@@ -10,10 +10,10 @@ beforeEach(function(){
 })
 afterEach(function(){
     console.log('test'+count+'end')
+    count++;
 })
 test('test1',function(){
     expect(count).toBe(1)
-    count++;
 })
 test('test2',function(){
     expect(count).toBe(2)
