@@ -23,7 +23,11 @@ test('mockFn return value once',function(){
 test('mock implementation',function(){
     mockFnImplementation('mock implementation ')
     mockFnImplementation('mock implementation')
-    //print mock implementation
+    /*打印结果
+     mock implementation once 
+     mock implementation
+     */
+
 })
 
 test('mock module',function(){
