@@ -87,3 +87,8 @@ test('async await with error',async function(){
 - async和await可以视为promise的语法糖，它使得异步的代码可以以同步的形式调用，避免了使用promise代码的横向扩展。如上代码所示，可以传递async关键字修饰的函数给test，在回调中，await将等待promise执行结束，await语句的值是promise的结果。
 - 对于拒绝状态的promise，可以在try语句中使用await，之后再catch语句中捕获异常，执行断言函数。
 
+#### 异步模块
+
+对于有网络请求的异步模块，可以在其同目录下新建`__mocks__`文件夹,再新建与此异步模块名相同的文件。之后可使用虚拟的数据并返回一个promise。测试文件中使用jest.mock方法处理整个异步模块，测试时将不会发起实际的网络请求，而是使用模拟的数据。这与jest.mock()处理模块后使用mockResolvedValue方法具有相似的效果。
+
+注意：`__mocks__`区分大小写
