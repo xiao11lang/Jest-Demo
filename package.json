@@ -21,6 +21,11 @@
   },
   "homepage": "https://github.com/xiao11lang/Jest-Demo#readme",
   "devDependencies": {
-    "jest": "^23.6.0"
+    "jest": "^23.6.0",
+    "@babel/preset-env": "*",
+    "@babel/preset-react": "*",
+    "babel-jest": "*",
+    "react-test-renderer": "*",
+    "regenerator-runtime": "*"
   }
 }
