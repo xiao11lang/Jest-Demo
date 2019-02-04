@@ -84,9 +84,9 @@ test('if utils mocked automatically', () => {
 
 ### `bail` [number | boolean]
 
-Default: `0`
+默认值: `0`
 
-By default, Jest runs all tests and produces all errors into the console upon completion. The bail config option can be used here to have Jest stop running tests after `n` failures. Setting bail to `true` is the same as setting bail to `1`.
+默认情况下，jest运行所有测试，并在完成时将所有错误生成到控制台。可以使用`bail`配置选项让jest在n个测试失败后停止运行。`bail`设为`true`相当于1。 
 
 ### `browser` [boolean]
 
@@ -98,15 +98,15 @@ By default, Jest runs all tests and produces all errors into the console upon co
 
 默认值︰ `"/tmp/<path>"`
 
-Jest用来储存依赖信息缓存的目录。
+jest用来储存依赖信息缓存的目录。
 
-Jest 尝试去扫描你的依赖树一次（前期）并且把依赖树缓存起来，其目的就是抹去某些在运行测试时需要进行的文件系统排序。 这一配置选项让你可以自定义Jest将缓存数据储存在磁盘的那个位置。
+jest 尝试去扫描你的依赖树一次（前期）并且把依赖树缓存起来，其目的就是抹去某些在运行测试时需要进行的文件系统排序。 这一配置选项让你可以自定义jest将缓存数据储存在磁盘的那个位置。
 
 ### `clearMocks` [boolean]
 
 默认值︰`false`
 
-Automatically clear mock calls and instances between every test. Equivalent to calling `jest.clearAllMocks()` between each test. This does not remove any mock implementation that may have been provided.
+自动清除每个测试之间的模拟调用和实例。相当于在每个测试之间调用`jest.clearAllMocks()`。这并不会删除任何可能已经提供的模拟实现。 
 
 ### `collectCoverage` [boolean]
 
@@ -118,7 +118,7 @@ Automatically clear mock calls and instances between every test. Equivalent to c
 
 默认值：`undefined`
 
-An array of [glob patterns](https://github.com/jonschlinkert/micromatch) indicating a set of files for which coverage information should be collected. If a file matches the specified glob pattern, coverage information will be collected for it even if no tests exist for this file and it's never required in the test suite.
+表示应该收集覆盖信息的一组文件的模式数组。如果一个文件与指定的模式相匹配，那么即使该文件不存在测试，而且测试套件中也不需要它，也会为它收集覆盖率信息。 
 
 示例：
 
@@ -132,41 +132,33 @@ An array of [glob patterns](https://github.com/jonschlinkert/micromatch) indicat
 }
 ```
 
-This will collect coverage information for all the files inside the project's `rootDir`, except the ones that match `**/node_modules/**` or `**/vendor/**`.
+上述配置将收集项目`rootDir`中所有文件的覆盖率信息，除了与 `**/node_modules/**` 或 `**/vendor/**`.匹配的文件。
 
-*注意：该选项要求 collectCoverage 被设成true，或者通过 --coverage 参数来调用 Jest。*
-
-Help:
+*注意：该选项要求 collectCoverage 被设成true，或者通过 --coverage 参数来调用 jest。*
 
 ### `coverageDirectory` [string]
 
 默认值：`undefined`
 
-Jest输出覆盖信息文件的目录。
+jest输出覆盖信息文件的目录。
 
 ### `coveragePathIgnorePatterns` [数组]
 
 默认值︰`["node_modules"]`
 
-An array of regexp pattern strings that are matched against all file paths before executing the test. If the file path matches any of the patterns, coverage information will be skipped.
-
-These pattern strings match against the full path. Use the `<rootDir>` string token to include the path to your project's root directory to prevent it from accidentally ignoring all of your files in different environments that may have different root directories. Example: `["<rootDir>/build/", "<rootDir>/node_modules/"]`.
+如果文件路径与数组中任一模式匹配，则不计算其覆盖率信息。这些字符串匹配所有路径。使用<rootDir>字符串包含指向项目根目录的路径，防止它意外忽略需要覆盖率信息的文件。 
 
 ### `coverageReporters` [数组]
 
-Default: `["json", "lcov", "text", "clover"]`
+默认值: `["json", "lcov", "text", "clover"]`
 
-A list of reporter names that Jest uses when writing coverage reports. Any [istanbul reporter](https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib) can be used.
-
-*Note: Setting this option overwrites the default values. Add "text" or "text-summary" to see a coverage summary in the console output.*
+jest生成覆盖率报告时使用的后缀
 
 ### `coverageThreshold` [object]
 
 默认值：`undefined`
 
-This will be used to configure minimum threshold enforcement for coverage results. Thresholds can be specified as `global`, as a [glob](https://github.com/isaacs/node-glob#glob-primer), and as a directory or file path. 如果没有达到阈值，Jest 执行测试时将会失败。 Thresholds specified as a positive number are taken to be the minimum percentage required. Thresholds specified as a negative number represent the maximum number of uncovered entities allowed.
-
-For example, with the following configuration jest will fail if there is less than 80% branch, line, and function coverage, or if there are more than 10 uncovered statements:
+配置jest测试时最低的覆盖率阈值，可以定义为 global, glob以及目录或文件路径,如果测试结果没有达到阈值，测试将会失败。 指定为正数的阈值被视为所需的最低百分比，指定为负数的阈值表示允许的未覆盖的该键名代表的实体的最大数量。 
 
 ```javascript
 {
@@ -184,9 +176,9 @@ For example, with the following configuration jest will fail if there is less th
 }
 ```
 
-If globs or paths are specified alongside `global`, coverage data for matching paths will be subtracted from overall coverage and thresholds will be applied independently. 通配符模式设置的阈值将应用到所匹配的所有文件上并单独计算。 If the file specified by path is not found, error is returned.
+通配符模式设置的阈值将应用到所匹配的所有文件上并单独计算。 如果找不到路径指定的文件，则返回错误 。
 
-例如，基于下面的配置：
+基于下面的配置：
 
 ```javascript
 {
@@ -217,10 +209,10 @@ If globs or paths are specified alongside `global`, coverage data for matching p
 }
 ```
 
-Jest 在以下情况下将失败：
+jest 在以下情况下将失败：
 
-- The `./src/components` directory has less than 40% branch or statement coverage.
-- One of the files matching the `./src/reducers/**/*.js` glob has less than 90% statement coverage.
+- `./src/components` 目录的分支或语句覆盖率低于40% 
+- 与 `./src/reducers/**/*.js` 匹配的一个文件的语句覆盖率低于 90% 
 - 文件 `./src/api/very-important-module.js` 的任意一种覆盖率低于 100%
 - 所有剩下的文件的任意一种覆盖率总计低于 50% (根据 `global`)
 
@@ -228,7 +220,7 @@ Jest 在以下情况下将失败：
 
 默认值：`undefined`
 
-This option allows the use of a custom dependency extractor. It must be a node module that exports an object with an `extract` function. E.g.:
+此选项允许自定义依赖项提取器。提取器是一个包含extract方法的对象。
 
 ```javascript
 const fs = require('fs');
@@ -249,23 +241,19 @@ module.exports = {
 };
 ```
 
-The `extract` function should return an iterable (`Array`, `Set`, etc.) with the dependencies found in the code.
-
-That module can also contain a `getCacheKey` function to generate a cache key to determine if the logic has changed and any cached artifacts relying on it should be discarded.
+`extract` 方法需返回可遍历的数据结构，其中包含代码中使用的依赖项。提取器模块对象也可以包含一个`getCacheKey` 方法，用来生成一个缓存密钥，以确定逻辑是否已经更改，依赖它的任何缓存工件都应该被丢弃 。
 
 ### `errorOnDeprecated` [boolean]
 
 默认值︰`false`
 
-Make calling deprecated APIs throw helpful error messages. Useful for easing the upgrade process.
+使调用不推荐的API抛出有用的错误消息。有助于简化升级过程。 
 
 ### `extraGlobals` [数组]
 
 默认值：`undefined`
 
-Test files run inside a [vm](https://nodejs.org/api/vm.html), which slows calls to global context properties (e.g. `Math`). With this option you can specify extra properties to be defined inside the vm for faster lookups.
-
-For example, if your tests call `Math` often, you can pass it by setting `extraGlobals`.
+测试文件在[vm](https://nodejs.org/api/vm.html)中运行，这会减缓对全局上下文属性(例如数学)的调用。使用此选项，您可以指定要在`vm`中定义的额外属性，以加快查找速度。 
 
 ```javascript
 {
@@ -278,11 +266,9 @@ For example, if your tests call `Math` often, you can pass it by setting `extraG
 
 ### `forceCoverageMatch` [数组]
 
-Default: `['']`
+默认值: `['']`
 
-Test files are normally ignored from collecting code coverage. With this option, you can overwrite this behavior and include otherwise ignored files in code coverage.
-
-For example, if you have tests in source files named with `.t.js` extension as following:
+在收集代码覆盖率时，通常忽略测试文件。使用此选项，您可以覆盖此行为，并在代码覆盖率中包含被忽略的文件。 
 
 ```javascript
 // sum.t.js
@@ -328,21 +314,19 @@ if (process.env.NODE_ENV === 'test') {
 }
 ```
 
-注意，如果你在这指定了一个全局引用值（例如，对象或者数组），之后在测试运行中有些代码改变了这个被引用的值，这个改动对于其他测试*不会*生效。 In addition the `globals` object must be json-serializable, so it can't be used to specify global functions. 要实现这种功能，应该使用 `setupFiles`。
+注意，如果你在这指定了一个全局引用值（例如，对象或者数组），之后在测试运行中有些代码改变了这个被引用的值，这个改动对于其他测试*不会*生效。 此外，globals对象必须是json序列化的，因此不能用于指定全局函数。 要实现这种功能，应该使用 `setupFiles`。
 
 ### `globalSetup` [string]
 
 默认值：`undefined`
 
-This option allows the use of a custom global setup module which exports an async function that is triggered once before all test suites. This function gets Jest's `globalConfig` object as a parameter.
+此选项允许使用自定义全局设置模块，该模块导出在所有测试之前触发一次的异步函数，函数参数为`globalConfig`  
 
-*Note: A global setup module configured in a project (using multi-project runner) will be triggered only when you run at least one test from this project.*
+注意：在项目中配置的全局设置模块只有在您从该项目运行至少一个测试时才会触发。 
 
-*Note: Any global variables that are defined through globalSetup can only be read in globalTeardown. You cannot retrieve globals defined here in your test suites.*
+注意：任何通过globalSetup定义的全局变量只能在globalTeardown中读取。不能在测试文件中访问。 
 
-*Note: While code transformation is applied to the linked setup-file, Jest will \**not** transform any code in node_modules. This is due to the need to load the actual transformers (e.g. babel or typescript) to perform transformation.*
-
-示例：
+注意：当setup文件中包含代码转换时时，jest将不会转换node_modules中的任何代码。这是因为需要加载实际的转换器来执行转换。 
 
 ```javascript
 // setup.js
@@ -353,7 +337,7 @@ module.exports = async () => {
 };
 ```
 
-```
+```javascript
 // teardown.js
 module.exports = async function() {
   await global.__MONGOD__.stop();
@@ -364,39 +348,27 @@ module.exports = async function() {
 
 默认值：`undefined`
 
-This option allows the use of a custom global teardown module which exports an async function that is triggered once after all test suites. This function gets Jest's `globalConfig` object as a parameter.
+此选项允许使用自定义的全局后置模块，该模块导出一个异步函数，该异步函数在所有测试之后触发一次，函数参数为`globalConfig`  
 
-*Note: A global teardown module configured in a project (using multi-project runner) will be triggered only when you run at least one test from this project.*
-
-_Node: The same caveat concerning transformation of `node_modules_ as for`globalSetup`applies to`globalTeardown`.
+注意：在项目中配置的全局后置模块只有在您从该项目运行至少一个测试时才会触发。 
 
 ### `moduleDirectories` [数组]
 
 默认值︰`["node_modules"]`
 
-An array of directory names to be searched recursively up from the requiring module's location. Setting this option will *override* the default, if you wish to still search `node_modules` for packages include it along with any other options: `["node_modules", "bower_components"]`
+从所需模块的位置递归搜索的目录名数组。设置此选项将覆盖默认选项 
 
 ### `moduleFileExtensions` [数组]
 
-Default: `["js", "json", "jsx", "ts", "tsx", "node"]`
+默认值: `["js", "json", "jsx", "ts", "tsx", "node"]`
 
-An array of file extensions your modules use. If you require modules without specifying a file extension, these are the extensions Jest will look for, in left-to-right order.
-
-We recommend placing the extensions most commonly used in your project on the left, so if you are using TypeScript, you may want to consider moving "ts" and/or "tsx" to the beginning of the array.
+模块使用的文件扩展名数组。如果您需要模块而不指定文件扩展名，jest将按照从左到右的顺序查找这些扩展。 
 
 ### `moduleNameMapper` [object<string, string>]
 
 默认值︰`null`
 
-A map from regular expressions to module names that allow to stub out resources, like images or styles with a single module.
-
-Modules that are mapped to an alias are unmocked by default, regardless of whether automocking is enabled or not.
-
-Use `<rootDir>` string token to refer to [`rootDir`](https://jestjs.io/docs/zh-Hans/configuration#rootdir-string) value if you want to use file paths.
-
-Additionally, you can substitute captured regex groups using numbered backreferences.
-
-示例：
+从正则表达式到模块名称的映射，允许对资源进行存根处理，例如单个模块的图片或样式。默认情况下，映射到别名的模块是不可模拟的，无论是否启用自动锁定。如果要使用文件路径，使用<rootDir>字符串引用rootDir值。 
 
 ```javascript
 {
@@ -408,15 +380,11 @@ Additionally, you can substitute captured regex groups using numbered backrefere
 }
 ```
 
-The order in which the mappings are defined matters. Patterns are checked one by one until one fits. The most specific rule should be listed first.
-
-*Note: If you provide module name without boundaries ^$ it may cause hard to spot errors. E.g. relaywill replace all modules which contain relay as a substring in its name: relay, react-relay and graphql-relay will all be pointed to your stub.*
-
 ### `modulePathIgnorePatterns` [数组]
 
 默认值：`[]`
 
-An array of regexp pattern strings that are matched against all module paths before those paths are to be considered 'visible' to the module loader. If a given module's path matches any of the patterns, it will not be `require()`-able in the test environment.
+与所有模块路径匹配的regexp模式字符串数组，如果给定模块的路径与任何模式匹配，则在测试环境中不需要require。 
 
 These pattern strings match against the full path. Use the `<rootDir>` string token to include the path to your project's root directory to prevent it from accidentally ignoring all of your files in different environments that may have different root directories. Example: `["<rootDir>/build/"]`.
 
