@@ -386,7 +386,7 @@ module.exports = async function() {
 
 与所有模块路径匹配的regexp模式字符串数组，如果给定模块的路径与任何模式匹配，则在测试环境中不需要require。 
 
-These pattern strings match against the full path. Use the `<rootDir>` string token to include the path to your project's root directory to prevent it from accidentally ignoring all of your files in different environments that may have different root directories. Example: `["<rootDir>/build/"]`.
+这些模式字符串与完整路径匹配。使用<rootDir>字符串包含项目根目录的路径，以防止意外忽略可能具有不同根目录的不同环境中的所有文件 
 
 ### `modulePaths` [数组]
 
